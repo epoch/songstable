@@ -8,8 +8,8 @@ class Song < ActiveRecord::Base
   accepts_nested_attributes_for :versions
 
   validate :at_least_one_title
-  validate :title_is_primary, :if => :only_one_title?
   validate :at_least_one_version
+  validate :one_primary_title
   validate :only_one_primary_title
 
   after_initialize :set_defaults
@@ -34,12 +34,12 @@ class Song < ActiveRecord::Base
   	errors.add(:base, "at least one title") if titles.empty?  	  	
   end
 
-  def title_is_primary
-    errors.add(:base, "last title must be primary") unless titles.first.primary?
+  def one_primary_title
+    errors.add(:base, "please include one primary title") unless titles.any? {|title| title.primary? }
   end
 
   def only_one_primary_title
-  	errors.add(:base, "only one primary title") if titles.select {|title| title.primary? }.size > 1  	
+  	errors.add(:base, "please include only one primary title") if titles.select {|title| title.primary? }.size > 1  	
   end
 
   def at_least_one_version

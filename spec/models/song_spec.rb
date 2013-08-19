@@ -48,8 +48,8 @@ describe Song do
 					song
 				end
 
-				it "raise exception with error message last title must be primary" do
-					expect{song.save!}.to raise_exception(/last title must be primary/)
+				it "raise exception with error message need one primary title" do
+					expect{song.save!}.to raise_exception(/one primary title/)
 				end
 			end
 	  end
@@ -83,6 +83,13 @@ describe Song do
 		  	it "raise exception with error message only one primary" do
 		  		song.titles[1].primary = true
 		  		expect{song.save!}.to raise_exception(/only one primary/)
+		  	end
+			end
+
+			context "when both are not set as primary" do
+		  	it "raise exception with error message one primary title" do
+		  		song.titles[0].primary = false
+		  		expect{song.save!}.to raise_exception(/one primary title/)
 		  	end
 			end
 	  end
