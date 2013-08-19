@@ -1,0 +1,38 @@
+<h2>Submit A Song</h2>
+
+<% if @song.errors.any? %>
+  <% @song.errors.full_messages.each do |msg| %>
+    <%= msg %><br/>
+  <% end %>
+<% end %>
+
+<%= form_for @song do |f| %>
+
+<div id="titles">
+  <fieldset>
+  	<%= f.fields_for :titles do |title| %>
+    	<%= render 'title_fields', :f => title %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association 'Add another name', f, :titles, :class => "small button secondary" %>
+    </div>
+  </fieldset>
+</div>
+
+<div id="versions">  
+  <fieldset>
+    <% f.object.versions.build if f.object.versions.empty? %>
+    <%= f.fields_for :versions do |version| %>
+      <%= render 'version_fields', :f => version %>
+    <% end %>
+    <div class="links">
+      <%#= link_to_add_association 'Add another name', f, :titles, :class => "small button" %>
+    </div>
+  </fieldset>
+</div>
+
+  <%= f.submit "Submit Song", :class => "button" %>
+
+<% end %>
+
+

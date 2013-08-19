@@ -1,0 +1,13 @@
+h2 = @song.primary_title.name
+
+- @song.versions.each do |version|
+  ul class="gallery small-block-grid-2 large-block-grid-4"
+    - version.pages.each do |page|
+      li = link_to image_tag(page.asset_file_url), page.asset_file_url
+
+
+= content_for :js do
+  javascript:
+    $(document).ready(function(){
+      var myPhotoSwipe = $(".gallery a").photoSwipe({ enableMouseWheel: false , enableKeyboard: true });
+    });

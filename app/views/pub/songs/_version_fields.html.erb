@@ -1,0 +1,13 @@
+
+	<%= f.text_field :description, :placeholder => "Optional short description for this version" %>
+
+	<% f.object.pages.build if f.object.pages.empty? %>
+	<%= f.fields_for :pages do |page| %>
+	  <%= render 'page_fields', :f => page %>
+	<% end %>
+	<div class="links">
+	  <%= link_to_add_association 'Add another page', f, :pages, :class => "small button secondary" %>
+	</div>
+
+
+

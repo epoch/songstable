@@ -1,0 +1,22 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: song_stable_development
+  pool: 5
+  username: 
+  password:
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: song_stable_test
+  pool: 5
+  username: 
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: song_stable_production
+  pool: 5
+  username: 
+  password:

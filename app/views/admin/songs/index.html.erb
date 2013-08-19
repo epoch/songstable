@@ -1,0 +1,26 @@
+<h2>Listing songs</h2>
+
+Total: <%= @songs.count %>
+
+<table>
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Created</th>
+    <th colspan="2"></th>
+  </tr>	
+</thead>
+
+<tbody>
+<% @songs.each do |song| %>
+<tr>
+	<td><%= link_to song.primary_title.name, song %></td>
+	<td><%= song.created_at %></td>
+	<td><%= link_to 'edit', edit_admin_song_path(song) %></td>
+	<td><%= link_to 'delete', [:admin, song], :method => :delete, :confirm => 'Are you sure?' %></td>
+</tr>	
+<% end %>
+
+</tbody>
+
+</table>

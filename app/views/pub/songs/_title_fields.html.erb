@@ -1,0 +1,16 @@
+<div class="nested-fields row">
+  <div class="large-8 columns">
+		<%= f.text_field :name, :placeholder => "name" %>
+	</div>
+	
+	<div class="large-2 columns">	
+		<%= f.check_box :primary %>
+	  <span></span> Primary
+	</div>
+
+	<div class="large-2 columns">	
+		<%= link_to_remove_association "Remove name", f, :class => "button tiny alert" %>
+	</div>
+</div>
+
+

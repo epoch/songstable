@@ -1,0 +1,22 @@
+<h2><%= @song.primary_title.name %></h2>
+
+
+<ul id="Gallery" class="gallery">
+	
+	<% @song.versions.first.pages.each do |page| %>
+		<li><%= link_to image_tag(page.asset_file_url), page.asset_file_url %></li>
+	<% end %>
+	
+</ul>
+
+
+
+<%= content_for :js do %>
+
+$(document).ready(function(){
+
+	var myPhotoSwipe = $("#Gallery a").photoSwipe({ enableMouseWheel: false , enableKeyboard: true });
+
+});
+
+<% end %>
